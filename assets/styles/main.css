@@ -72,7 +72,6 @@ header {
         text-decoration: underline solid 2px;
         text-underline-offset: 0.75rem;
         transition: all 0.3s ease;
-
       }
     }
   }
@@ -151,8 +150,6 @@ header {
   user-select: none;
   transition: all 0.3s ease;
 
-
-
   &:hover {
     background-color: var(--VeryDarkGray);
   }
@@ -193,4 +190,43 @@ header {
 .hero h1.fade-out,
 .hero p.fade-out {
   opacity: 0;
+}
+
+@media screen and (max-width: 1380px) {
+  .hero {
+    grid-template-columns: 55% auto;
+  }
+
+  .hero-text {
+    padding-inline: 4rem;
+  }
+
+  .arrows {
+    width: 34.5%;
+  }
+
+  .about-section {
+    grid-template-columns: 25% auto 25%;
+    min-height: 220px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hero {
+    grid-template-columns: unset;
+    justify-content: unset;
+  }
+
+  .hero-img {
+    height: 200px;
+  }
+
+  .hero-text {
+    padding-inline: 2rem;
+    padding-block: 3rem; 
+  }
+
+  .arrows {
+    display: none;
+  }
 }
