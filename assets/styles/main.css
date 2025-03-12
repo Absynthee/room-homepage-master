@@ -32,10 +32,6 @@ p {
   transition: all 1s ease;
 }
 
-.hidden {
-  display: none !important;
-}
-
 header {
   display: flex;
   position: absolute;
@@ -155,11 +151,13 @@ header {
   gap: 1rem;
 }
 
-.hero h1, .hero p {
-    transition: opacity 0.3s ease-in-out;
-    opacity: 1;
+.hero h1,
+.hero p {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
 }
 
-.hero h1.fade-out, .hero p.fade-out {
-    opacity: 0;
+.hero h1.fade-out,
+.hero p.fade-out {
+  opacity: 0;
 }
