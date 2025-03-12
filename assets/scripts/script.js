@@ -17,15 +17,26 @@ const heroData = [
 ];
 
 let currentIndex = 0;
+let autoTransitionInterval;
 
 function updateHeroContent() {
     const heroTitle = document.querySelector('.hero h1');
     const heroDescription = document.querySelector('.hero p');
     const heroImage = document.querySelector('.hero-img');
 
-    heroTitle.innerHTML = heroData[currentIndex].title;
-    heroDescription.innerHTML = heroData[currentIndex].description;
-    heroImage.style.backgroundImage = `url(${heroData[currentIndex].image})`;
+    heroTitle.classList.add('fade-out');
+    heroDescription.classList.add('fade-out');
+  //  heroImage.classList.add('fade-out');
+
+    setTimeout(() => {
+        heroTitle.innerHTML = heroData[currentIndex].title;
+        heroDescription.innerHTML = heroData[currentIndex].description;
+        heroImage.style.backgroundImage = `url(${heroData[currentIndex].image})`;
+
+        heroTitle.classList.remove('fade-out');
+        heroDescription.classList.remove('fade-out');
+        heroImage.classList.remove('fade-out');
+    }, 300);
 }
 
 function nextSlide() {
@@ -38,9 +49,39 @@ function previousSlide() {
     updateHeroContent();
 }
 
+function startAutoTransition() {
+    autoTransitionInterval = setInterval(nextSlide, 10000);
+}
+
+function stopAutoTransition() {
+    clearInterval(autoTransitionInterval);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     updateHeroContent();
-    
-    document.querySelector('.next-btn').addEventListener('click', nextSlide);
-    document.querySelector('.prev-btn').addEventListener('click', previousSlide);
+    startAutoTransition();
+
+    document.querySelector('.next-btn').addEventListener('click', () => {
+        nextSlide();
+        stopAutoTransition();
+        startAutoTransition();
+    });
+
+    document.querySelector('.prev-btn').addEventListener('click', () => {
+        previousSlide();
+        stopAutoTransition();
+        startAutoTransition();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+            nextSlide();
+            stopAutoTransition();
+            startAutoTransition();
+        } else if (event.key === 'ArrowLeft') {
+            previousSlide();
+            stopAutoTransition();
+            startAutoTransition();
+        }
+    });
 });
