@@ -29,6 +29,7 @@ h2 {
 p {
   color: var(--DarkGray);
   max-width: 75ch;
+  transition: all 1s ease;
 }
 
 .hidden {
@@ -72,11 +73,13 @@ header {
 }
 
 .hero-img {
-    width: 100%;
+  width: 100%;
+  min-height: 534px;
+  background-size: cover;
 
-    img {
-        width: 100%;
-    }
+  img {
+    width: 100%;
+  }
 }
 
 .hero-text {
@@ -107,23 +110,24 @@ header {
 }
 
 .arrows {
-    background-color: black;
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 80px;
-    width: 28.2%;
+  background-color: black;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  width: 28.2%;
 }
 
-.previous, .next {
-    color: white;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.prev-btn,
+.next-btn {
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .about-section {
@@ -134,13 +138,13 @@ header {
 }
 
 .about-img {
+  width: 100%;
+  height: 100%;
+
+  img {
     width: 100%;
     height: 100%;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
+  }
 }
 
 .about-text {
