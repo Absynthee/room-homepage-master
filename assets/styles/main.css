@@ -5,6 +5,11 @@
   --VeryDarkGray: hsl(0, 0%, 27%);
 }
 
+::selection {
+  background-color: var(--VeryDarkGray);
+  color: var(--White);
+}
+
 html {
   font-family: League Spartan;
   font-size: 1rem;
@@ -45,6 +50,8 @@ header {
     height: fit-content;
     z-index: 2;
     padding-inline: 3rem;
+    pointer-events: none;
+    user-select: none;
   }
 
   ul {
@@ -56,8 +63,17 @@ header {
     padding: 20px;
     text-transform: lowercase;
     font-weight: 500;
+
     li {
       cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        text-decoration: underline solid 2px;
+        text-underline-offset: 0.75rem;
+        transition: all 0.3s ease;
+
+      }
     }
   }
 }
@@ -76,6 +92,8 @@ header {
   img {
     width: 100%;
     opacity: 0;
+    pointer-events: none;
+    user-select: none;
   }
 }
 
@@ -97,6 +115,11 @@ header {
   text-decoration: none;
   color: var(--Black);
   font-weight: 500;
+  user-select: none;
+
+  &:hover {
+    color: var(--DarkGray);
+  }
 
   &::after {
     content: url("../images/icon-arrow.svg");
@@ -125,6 +148,14 @@ header {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+
+
+
+  &:hover {
+    background-color: var(--VeryDarkGray);
+  }
 }
 
 .about-section {
@@ -141,6 +172,8 @@ header {
   img {
     width: 100%;
     height: 100%;
+    pointer-events: none;
+    user-select: none;
   }
 }
 
