@@ -1,87 +1,99 @@
 const heroData = [
     {
-        title: "Discover innovative ways to decorate",
-        description: "We provide unmatched quality, comfort, and style for property owners across the country. Our experts combine form and function in bringing your vision to life. Create a room in your own style with our collection and make your property a reflection of you and what you love.",
-        image: "assets/images/desktop-image-hero-1.jpg"
+      title: "Discover innovative ways to decorate",
+      description: "We provide unmatched quality, comfort, and style for property owners across the country.",
+      desktopImage: "assets/images/desktop-image-hero-1.jpg",
+      mobileImage: "assets/images/mobile-image-hero-1.jpg"
     },
     {
-        title: "We are available all across the globe",
-        description: "With stores all over the world, it's easy for you to find furniture for your home or place of business. Locally, we're in most major cities throughout the country. Find the branch nearest you using our store locator. Any questions? Don't hesitate to contact us today.",
-        image: "assets/images/desktop-image-hero-2.jpg"
+      title: "We are available all across the globe",
+      description: "With stores all over the world, it's easy for you to find furniture for your home or place of business.",
+      desktopImage: "assets/images/desktop-image-hero-2.jpg",
+      mobileImage: "assets/images/mobile-image-hero-2.jpg"
     },
     {
-        title: "Manufactured with the best materials",
-        description: "Our modern furniture store provide a high level of quality. Our company has invested in advanced technology to ensure that every product is made as perfect and as consistent as possible. With three decades of experience in this industry, we understand what customers want for their home and office.",
-        image: "assets/images/desktop-image-hero-3.jpg"
+      title: "Manufactured with the best materials",
+      description: "Our modern furniture store provide a high level of quality. We've invested in advanced technology.",
+      desktopImage: "assets/images/desktop-image-hero-3.jpg",
+      mobileImage: "assets/images/mobile-image-hero-3.jpg"
     }
-];
-
-let currentIndex = 0;
-let autoTransitionInterval;
-
-function updateHeroContent() {
-    const heroTitle = document.querySelector('.hero h1');
-    const heroDescription = document.querySelector('.hero p');
-    const heroImage = document.querySelector('.hero-img');
-
-    heroTitle.classList.add('fade-out');
-    heroDescription.classList.add('fade-out');
-  //  heroImage.classList.add('fade-out');
-
-    setTimeout(() => {
-        heroTitle.innerHTML = heroData[currentIndex].title;
-        heroDescription.innerHTML = heroData[currentIndex].description;
-        heroImage.style.backgroundImage = `url(${heroData[currentIndex].image})`;
-
-        heroTitle.classList.remove('fade-out');
-        heroDescription.classList.remove('fade-out');
-        heroImage.classList.remove('fade-out');
-    }, 300);
-}
-
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % heroData.length;
-    updateHeroContent();
-}
-
-function previousSlide() {
-    currentIndex = (currentIndex - 1 + heroData.length) % heroData.length;
-    updateHeroContent();
-}
-
-function startAutoTransition() {
-    autoTransitionInterval = setInterval(nextSlide, 10000);
-}
-
-function stopAutoTransition() {
-    clearInterval(autoTransitionInterval);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateHeroContent();
-    startAutoTransition();
-
-    document.querySelector('.next-btn').addEventListener('click', () => {
-        nextSlide();
-        stopAutoTransition();
-        startAutoTransition();
-    });
-
-    document.querySelector('.prev-btn').addEventListener('click', () => {
-        previousSlide();
-        stopAutoTransition();
-        startAutoTransition();
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowRight') {
-            nextSlide();
-            stopAutoTransition();
-            startAutoTransition();
-        } else if (event.key === 'ArrowLeft') {
-            previousSlide();
-            stopAutoTransition();
-            startAutoTransition();
-        }
-    });
-});
+  ];
+  
+  class HeroSlider {
+    constructor() {
+      this.currentIndex = 0;
+      this.autoTransitionInterval = null;
+      this.elements = {
+        title: document.querySelector('.hero h1'),
+        description: document.querySelector('.hero p'),
+        image: document.querySelector('.hero-img')
+      };
+  
+      this.bindEvents();
+      this.updateContent();
+      this.startAutoTransition();
+    }
+  
+    get currentSlide() {
+      return heroData[this.currentIndex];
+    }
+  
+    getResponsiveImage() {
+      return window.innerWidth < 375 
+        ? this.currentSlide.mobileImage 
+        : this.currentSlide.desktopImage;
+    }
+  
+    updateContent() {
+      const { title, description, image } = this.elements;
+      
+      [title, description].forEach(el => el.classList.add('fade-out'));
+  
+      setTimeout(() => {
+        title.textContent = this.currentSlide.title;
+        description.textContent = this.currentSlide.description;
+        image.style.backgroundImage = `url(${this.getResponsiveImage()})`;
+  
+        [title, description].forEach(el => el.classList.remove('fade-out'));
+      }, 300);
+    }
+  
+    navigate(direction) {
+      this.stopAutoTransition();
+      
+      this.currentIndex = (this.currentIndex + direction + heroData.length) % heroData.length;
+      this.updateContent();
+      
+      this.startAutoTransition();
+    }
+  
+    startAutoTransition() {
+      this.autoTransitionInterval = setInterval(() => this.navigate(1), 10000);
+    }
+  
+    stopAutoTransition() {
+      clearInterval(this.autoTransitionInterval);
+    }
+  
+    bindEvents() {
+      // Navigation buttons
+      document.querySelector('.next-btn').addEventListener('click', () => this.navigate(1));
+      document.querySelector('.prev-btn').addEventListener('click', () => this.navigate(-1));
+  
+      // Keyboard navigation
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') this.navigate(1);
+        if (event.key === 'ArrowLeft') this.navigate(-1);
+      });
+  
+      // Responsive image handling
+      window.addEventListener('resize', () => this.updateContent());
+    }
+  
+    static init() {
+      return new HeroSlider();
+    }
+  }
+  
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', HeroSlider.init);
