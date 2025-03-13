@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Teko:wght@300..700&display=swap"
+    rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
 
   <title>Frontend Mentor | Room homepage</title>
-<link rel="stylesheet" href="assets/styles/reset.css">
+  <link rel="stylesheet" href="assets/styles/reset.css">
   <link rel="stylesheet" href="assets/styles/main.css">
   <script src="assets/scripts/script.js" defer></script>
 </head>
@@ -19,13 +21,31 @@
   <header>
     <img src="assets/images/logo.svg" alt="room">
     <nav>
-      <ul>
+      <ul class="desktop-nav">
         <li>Home</li>
         <li>Shop</li>
         <li>About</li>
         <li>Contact</li>
       </ul>
-    </nav>
+    <div class="mobile-nav">
+      <button class="popover-menu" popovertarget="mobile-nav" aria-label="Toggle Navigation">
+        <img src="assets/images/icon-hamburger.svg" alt="">
+      </button>
+      <div popover="auto" id="mobile-nav" class="popover-nav">
+          <ul class="mobile-nav-list">
+            <div class="nav-1" popovertarget="mobile-nav" aria-label="Toggle Navigation">
+              <li><img src="assets/images/icon-close.svg" alt=""></li>
+            </div>
+            <div class="nav-2">
+              <li>Home</li>
+              <li>Shop</li>
+              <li>About</li>
+              <li>Contact</li>
+            </div>
+          </ul>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -48,11 +68,11 @@
           </div>
         </div>
       </div>
-  
+
     </div>
 
     <div id="about" class="about-section">
-      <div class="about-img"><img src="assets/images/image-about-dark.jpg" alt="Dark Chair"></div>
+      <div class="about-img about-img-dark"></div>
       <div class="about-text">
         <h2>About our furniture</h2>
         <p>
@@ -62,7 +82,7 @@
           or anything in between. Product specialists are available to help you create your dream space.
         </p>
       </div>
-      <div class="about-img"><img src="assets/images/image-about-light.jpg" alt="Light Chair"></div>
+      <div class="about-img about-img-light"></div>
     </div>
 
 

@@ -63,6 +63,7 @@ header {
     padding: 20px;
     text-transform: lowercase;
     font-weight: 500;
+    align-items: center;
 
     li {
       cursor: pointer;
@@ -75,6 +76,43 @@ header {
       }
     }
   }
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.mobile-nav-list {
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.nav-1 {
+img {
+  padding-inline: 1rem;
+}
+}
+
+.nav-2 {
+  display: flex;
+  gap: 2rem;
+}
+
+.desktop-nav {
+  display: flex;
+}
+
+[popover] {
+  position: absolute;
+  align-items: center;
+  inset: 0;
+  width: 100%;
+  height: 6rem;
+  border: none;
+  padding: 0.25em;
+  overflow: auto;
+  color: CanvasText;
+  background-color: Canvas;
 }
 
 .hero {
@@ -165,13 +203,17 @@ header {
 .about-img {
   width: 100%;
   height: 100%;
+  min-height: 260px;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    user-select: none;
-  }
+.about-img-dark {
+  background: url(/assets/images/image-about-dark.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.about-img-light {
+  background: url(/assets/images/image-about-light.jpg) no-repeat center;
+  background-size: cover;
 }
 
 .about-text {
@@ -202,7 +244,7 @@ header {
   }
 
   .arrows {
-    width: 34.5%;
+    width: 44.5%;
   }
 
   .about-section {
@@ -218,15 +260,81 @@ header {
   }
 
   .hero-img {
-    height: 200px;
+    min-height: 400px;
+    background-position: center;
   }
 
   .hero-text {
     padding-inline: 2rem;
-    padding-block: 3rem; 
+    padding-block: 3rem;
   }
 
   .arrows {
     display: none;
+  }
+
+  .about-section {
+    grid-template-columns: 42% auto;
+  }
+
+  .about-text {
+    padding-inline: 2rem;
+  }
+
+  .about-img-light {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  header {
+    width: 100%;
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-top: 22px;
+  }
+
+  .popover-menu {
+    background: none;
+    border: none;
+    width: fit-content;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .about-section {
+    grid-template-columns: auto;
+  }
+
+  .about-text {
+    padding-block: 3rem;
+    padding-inline: 2rem;
+  }
+
+  .about-img {
+    min-height: 200px;
+  }
+
+  .about-img-light {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  h1 {
+    font-size: 2.4rem;
   }
 }
