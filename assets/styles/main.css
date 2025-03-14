@@ -207,12 +207,12 @@ header {
 }
 
 .about-img-dark {
-  background: url(/assets/images/image-about-dark.jpg) no-repeat center;
+  background: url(../images/image-about-dark.jpg) no-repeat center;
   background-size: cover;
 }
 
 .about-img-light {
-  background: url(/assets/images/image-about-light.jpg) no-repeat center;
+  background: url(../images/image-about-light.jpg) no-repeat center;
   background-size: cover;
 }
 
