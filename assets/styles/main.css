@@ -87,13 +87,13 @@ header {
   padding-inline: 2rem;
 }
 
-.nav-1 {
-img {
-  padding-inline: 1rem;
-}
+.button-close {
+  img {
+    padding-inline: 1rem;
+  }
 }
 
-.nav-2 {
+.mobile-links {
   display: flex;
   gap: 2rem;
 }
