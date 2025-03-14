@@ -84,7 +84,7 @@ header {
 
 .mobile-nav-list {
   justify-content: space-between;
-  padding: 2rem;
+  padding-inline: 2rem;
 }
 
 .nav-1 {
@@ -305,7 +305,7 @@ img {
     padding-top: 22px;
   }
 
-  .popover-menu {
+  button {
     background: none;
     border: none;
     width: fit-content;
